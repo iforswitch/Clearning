@@ -1,4 +1,9 @@
 #include <stdio.h>
+
+//Function prototypes - lets compiler know in advance of functions that are defined later
+void modifyValue(int);
+//Note that printf has its own protoype, declared within the included header stdio.h!
+
 int main() {
 	int i = 10;
 	float f = 5.0;
@@ -67,7 +72,7 @@ int main() {
 
 	printf("All done!\n");
 
-
+	//Use switches with integer types instead of float or strings, note that characters are secretly integer types.
 	//Switch fall-throughs
 	switch (x) {
 	case 1:
@@ -79,5 +84,28 @@ int main() {
 	case 3:
 		printf("3\n");
 		break;
-	}
+	};
+
+	a = 5;
+	modifyValue(a);
+	printf("Value of a: %d\n", a); // 'a' is still 5, not 10
+
+
+
+	//Pointers!
+	//Pointer is a variable that holds an address.  Like in arrays, or the indexing of elements, - that is what an address is.
+	//It tells us where to find a variable is that is holding some value in memory, instead of knowing what the variable
+	//itself is.
+
+	int u = 10;
+	printf("Value of u is %i\n", u);
+	printf("Size of u is %zu\n", sizeof(u));
+	printf("Location of u is %p\n", (void*) & u);
+};
+
+//Functions create a copy of the argument passed to it in its local scope, meaning that any modification to that
+//copy does not affect the original - pass-by-value
+void modifyValue(int num)
+{
+	num = 10; // This changes the copy of 'num', not the original argument
 };
