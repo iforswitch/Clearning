@@ -155,7 +155,24 @@ int main() {
 	//int a[COUNT] = { [COUNT - 3] = 3, 2, 1 };
 	//0 0 3 2 1
 
+	//Multidimensional arrays
+	//Below is the same 2 code as C only really needs the other dimensions apart from the first (that is not 0).
+	//void print_2D_array(int a[2][3])
+	//void print_2D_array(int a[][3])
 
+	//strings
+	//strings are pointers in c.  Use a \ to escape characters
+	//using pointers means it points to the first character in the index;
+	char *test = "When asked if this string had quotes in it, she replied, \"It does.\"";
+	//Storage of a pointer to a string literal and an array of a string literal is different during initialisation.
+	//Don't mutate a pointer pointing to a string literal
+	//test[0] = 'z';  // BAD NEWS: tried to mutate a string literal!
+	char t[] = "Hello, again!";  // t is an array copy of the string 
+	t[0] = 'z'; //  No problem
+
+	//string lengths are calculated in c using a zero-nul character as a terminator.
+	char* s = "Hello!";  // Actually "Hello!\0" behind the scenes
+	//strcpy() has the destination as a first argument and the source as the second - destination = source.
 };
 
 //Functions create a copy of the argument passed to it in its local scope, meaning that any modification to that
