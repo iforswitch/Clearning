@@ -137,6 +137,25 @@ int main() {
 	for (int h = 0; h < 4; h++) {
 		printf("%f\n", f[h]);
 	}
+
+	//Array sizes
+	printf("total size of array: %zu, size of each element: %zu, length of array: %zu\n", sizeof(f), sizeof(int), sizeof(f) / sizeof(int));
+
+	//Passing to function doesn't work as it only passes pointer to the first element, which sizeof measures. instead.
+	//int a[5] = { 22, 37, 3490 };
+
+	// is the same as:
+
+	//int a[5] = { 22, 37, 3490, 0, 0 };
+	//int a[10] = {0, 11, 22, [5]=55, 66, 77};
+	//0 11 22 0 0 55 66 77 0 0
+
+
+	//#define COUNT 5
+	//int a[COUNT] = { [COUNT - 3] = 3, 2, 1 };
+	//0 0 3 2 1
+
+
 };
 
 //Functions create a copy of the argument passed to it in its local scope, meaning that any modification to that
