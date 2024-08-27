@@ -173,7 +173,23 @@ int main() {
 	//string lengths are calculated in c using a zero-nul character as a terminator.
 	char* s = "Hello!";  // Actually "Hello!\0" behind the scenes
 	//strcpy() has the destination as a first argument and the source as the second - destination = source.
+
+	//Structs!! a class with data members but no methods
+	//done at global scope
+	//initialising with order sensitive
+	struct car saturn = { "Saturn SL/2", 16000.99, 175 };
+	//initialising with order non sensitive
+	struct car saturn = { .speed = 175, .name = "Saturn SL/2" }; //price is initialise to be 0
+	//pointers passed in functions to a struct cannot use the dot operator as that is a struct s * type not a struct s
+	//an arrow is needed s->price, or (*s).price to dereference.  Preferably use arrow when passing a pointer to struct.
 };
+
+struct car {
+	char* name;
+	float price;
+	int speed;
+};
+
 
 //Functions create a copy of the argument passed to it in its local scope, meaning that any modification to that
 //copy does not affect the original - pass-by-value
