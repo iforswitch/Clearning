@@ -204,7 +204,18 @@ int main() {
 	//fread() returns the number of bytes read, so it will return 0 on EOF.
 	//serialise the the binary data when writing to stream as it allows portability. endianess, different arhictecture, compilers.
 
+	//typedef, creates an alias for a data type.
+	//  Anonymous struct! It has no name!
+//         |
+//         v
+//      |----|
+	typedef struct {
+		char* name;
+		int leg_count, speed;
+	} animal;                         // <-- new name
 
+	//struct animal y;  // ERROR: this no longer works--no such struct!
+	animal z;
 };
 
 struct car {
