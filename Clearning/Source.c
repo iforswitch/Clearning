@@ -182,6 +182,29 @@ int main() {
 	struct car saturn = { .speed = 175, .name = "Saturn SL/2" }; //price is initialise to be 0
 	//pointers passed in functions to a struct cannot use the dot operator as that is a struct s * type not a struct s
 	//an arrow is needed s->price, or (*s).price to dereference.  Preferably use arrow when passing a pointer to struct.
+
+	//FIle I/O. FILE * data type which is streamed into the program.  3 streams is already avaiable by default.
+	//stdin	Standard Input, generally the keyboard by default
+	//stdout	Standard Output, generally the screen by default
+	//stderr	Standard Error, generally the screen by default, as well
+	//fgetc() return EOF when reaching the end of a file, as a int instead of char as it can fall out of the range of char,
+	//meaning it needs to be able to return with a higher range of values - an int.  Although unless the return value is
+	//something your comparing to like EOF, then it will just be a char otherwise.
+	//fgets() reads lines which requires a pointer, maximum bytes to read, and a file to read from.
+	
+	//Binary files, raw stream of bytes with no translation.  "rb", "wb" modes, use fread() & fwrite().
+	// In the call to fwrite, the arguments are:
+	//
+	// * Pointer to data to write
+	// * Size of each "piece" of data
+	// * Count of each "piece" of data
+	// * FILE*
+	// unsigned char bytes[6] = {5, 37, 0, 88, 255, 12};
+	//fwrite(bytes, sizeof(char), 6, fp);
+	//fread() returns the number of bytes read, so it will return 0 on EOF.
+	//serialise the the binary data when writing to stream as it allows portability. endianess, different arhictecture, compilers.
+
+
 };
 
 struct car {
