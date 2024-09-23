@@ -292,6 +292,8 @@ int main(void) {
 	p++ //Therefore moves to the next INDEX OF EXACTLY 5 ints
 	((*p)[0))++ //would add 1 to 11, as its dereferencing t the first ELEMENT OF EXACTLY 5 INTS, and then accessing the first index and then adding one to it
 
+	Using the name of the array converts it to a pointer - passing the name of the array into a function also decays it to a pointer.
+
 
     // Print all elements of the array a variety of ways:
 
