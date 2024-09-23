@@ -4,7 +4,14 @@
 void modifyValue(int);
 //Note that printf has its own protoype, declared within the included header stdio.h!
 
-int main() {
+struct car {
+	char* name;
+	float price;
+	int speed;
+};
+
+
+int main(void) {
 	/*int i = 10;
 	float f = 5.0;
 	char* s = "Hello world!\n"; //char * is the string type 
@@ -177,7 +184,7 @@ int main() {
 	//Structs!! a class with data members but no methods
 	//done at global scope
 	//initialising with order sensitive
-	struct car saturn = { "Saturn SL/2", 16000.99, 175 };
+	//struct car saturn = { "Saturn SL/2", 16000.99, 175 };
 	//initialising with order non sensitive
 	struct car saturn = { .speed = 175, .name = "Saturn SL/2" }; //price is initialise to be 0
 	//pointers passed in functions to a struct cannot use the dot operator as that is a struct s * type not a struct s
@@ -204,6 +211,7 @@ int main() {
 	//fread() returns the number of bytes read, so it will return 0 on EOF.
 	//serialise the the binary data when writing to stream as it allows portability. endianess, different arhictecture, compilers.
 
+	///////////////////////////////////////////////////////////////////////////
 	//typedef, creates an alias for a data type.
 	//  Anonymous struct! It has no name!
 //         |
@@ -216,12 +224,111 @@ int main() {
 
 	//struct animal y;  // ERROR: this no longer works--no such struct!
 	animal z;
-};
 
-struct car {
-	char* name;
-	float price;
-	int speed;
+
+	/*
+	Declaring struct variable (no definition and no initialisation)
+	struct Person{
+		int age;
+		float height;
+		char name[100];
+	}
+
+	Declaring struct variable (no initialisation)
+	struct Person person1
+
+	Declaring and Initializing a Struct at the Same Time
+	struct Person person1 = {29, 188, "Steve"};
+
+	using designated initialisators
+	struct Person person4 = {
+		.age = 29,
+		.height = 188,
+		.name = "Steve"
+	}; <- Allows for ignoring order of inputs 'person4 = {.height = 188, .name = "Steve", .age =29};
+
+	Using typedef
+	typedef struct{
+		int age;
+		float height;
+		char name[100];
+	} Person;  <- can only refer by 'Person p1 = ...'
+
+	typedef struct Person{
+		int age;
+		float height;
+		char name[100];
+	} Person;  <- can refer by 'Person p1 = ...'  OR 'struct Person p1 = ...'
+
+	Declaring an array of structs
+	struct Person p[2] = { {29, 188, "Steve"}, {30, 178, "Charlie"} };
+
+	Using pointers
+	using an existing variable
+	struct Person p1;
+	struct Person * p = &p1;
+
+	using dynamic allocation
+	struct Person * p = malloc(sizeof(struct Person));
+
+	accessing with a pointer
+	(*p).age = 30; or p->age = 30;
+
+	*/
+	/////////////////////////
+
+
+	//Array pointer equivalence
+	//a[b] == *(a + b), adding/subtracting for a pointer moves its index accordingly.
+	/*
+	int a[] = {11, 22, 33, 44, 55};
+
+    int *p = a;  // p points to the first element of a, 11
+	int *p = &a[0] // equivalent to above
+	p++ //Moves to the next index
+	(*p)++ // Adds 1 to the dereference - 11 +1 = 12;
+
+	int (*p)[5] = &a // COMPLETELY DIFFERENT, pointing to an array of exactly 5 ints
+	p++ //Therefore moves to the next INDEX OF EXACTLY 5 ints
+	((*p)[0))++ //would add 1 to 11, as its dereferencing t the first ELEMENT OF EXACTLY 5 INTS, and then accessing the first index and then adding one to it
+
+
+    // Print all elements of the array a variety of ways:
+
+    for (int i = 0; i < 5; i++)
+        printf("%d\n", a[i]);      // Array notation with a
+
+    for (int i = 0; i < 5; i++)
+        printf("%d\n", p[i]);      // Array notation with p
+
+    for (int i = 0; i < 5; i++)
+        printf("%d\n", *(a + i));  // Pointer notation with a
+
+    for (int i = 0; i < 5; i++)
+        printf("%d\n", *(p + i));  // Pointer notation with p
+
+    for (int i = 0; i < 5; i++)
+        printf("%d\n", *(p++));    // Moving pointer p
+        //printf("%d\n", *(a++));    // Moving array variable a--ERROR!
+	*/
+
+	//memcpy
+	void* memcpy(void* s1, void* s2, size_t n); //copies s2 into s1
+	//void * pointers needed otherwise specialised memcpy would be needed for each datatype.
+	//void * allows for functions that don't care about datatype.
+	//1. You cannot do pointer arithmetic on a void*. 
+	//2. You cannot dereference a void*. 
+	//3. You cannot use the arrow operator on a void*, since it’s also a dereference. 
+	//4. You cannot use array notation on a void*, since it’s also a dereference, as well.
+	//Just convert the void * to another pointer before using it
+	char a = 'X';  // A single char
+
+	void* p = &a;  // p points to the 'X'
+	char* q = p;   // q also points to the 'X'
+
+	//printf("%c\n", *p);  // ERROR--cannot dereference void*!
+	printf("%c\n", *q);  // Prints "X"
+	//qsort() can sort anything according to the given format - qsort(array, count, size of each, format())
 };
 
 
